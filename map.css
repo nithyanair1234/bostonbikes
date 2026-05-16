@@ -1,0 +1,127 @@
+/* --- Clean Page Framework --- */
+html,
+body {
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center; 
+    background-color: #ffffff;
+}
+
+/* --- Header & Slider Layout --- */
+header {
+    display: flex;
+    justify-content: space-between; 
+    align-items: baseline;
+    padding: 2rem 0 1rem 0; 
+    width: calc(100% - 4rem); 
+    max-width: 80em; 
+    box-sizing: border-box;
+}
+
+header h1 {
+    margin: 0;
+    font-size: 2rem;
+    font-weight: 700;
+}
+
+label {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-weight: 500;
+}
+
+#time-slider {
+    width: 150px; 
+}
+
+.time-display {
+    display: flex;
+    flex-direction: column; 
+    align-items: flex-end; 
+    min-width: 85px;
+    line-height: 1.3;
+}
+
+.any-time {
+    color: #757575;
+    font-style: italic;
+    font-size: 0.85em; 
+}
+
+/* --- Map Container Layout --- */
+#map {
+    max-width: 80em; 
+    width: calc(100% - 4rem); 
+    height: 75vh; 
+    margin-bottom: 2rem; 
+    
+    position: relative; 
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    border-radius: 8px;
+}
+
+#map svg {
+    position: absolute;
+    z-index: 99;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+}
+
+circle {
+    pointer-events: auto !important;
+    cursor: pointer;
+
+    --color-departures: steelblue;
+    --color-arrivals: darkorange;
+    
+    --color: color-mix(
+        in oklch,
+        var(--color-departures) calc(100% * var(--departure-ratio)),
+        var(--color-arrivals)
+    );
+    
+    fill: var(--color);
+}
+
+:root {
+    --color-departures: steelblue;
+    --color-arrivals: darkorange;
+}
+
+.legend > div, 
+circle {
+    --color: color-mix(
+        in oklch,
+        var(--color-departures) calc(100% * var(--departure-ratio)),
+        var(--color-arrivals)
+    );
+}
+
+.legend {
+    display: flex;
+    justify-content: space-between; 
+    width: calc(100% - 4rem);       
+    max-width: 80em;
+    margin-block: 1rem 2rem;        
+    gap: 1em;
+}
+
+.legend > div {
+    flex: 1;                        
+    display: flex;
+    align-items: center;
+    justify-content: center;        
+    padding: 8px;
+    font-weight: 600;
+    font-size: 0.9em;
+    color: #ffffff;                 
+    border-radius: 6px;
+    background-color: var(--color); 
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
